@@ -9,6 +9,7 @@
 #' @export
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr bind_rows
+#' @importFrom dplyr mutate_if
 #' @importFrom tidyr unnest
 #'
 #' @examples
@@ -88,7 +89,7 @@ getAssets <- function(assets = "All") {
 
   # Attempt to unnest columns if needed
   finalResult <- tryCatch({
-    tidyr::unnest(finalResult, everything())
+    tidyr::unnest(finalResult)
   }, error = function(e) {
     stop("Error unnesting the final result: ", e$message)
   })
