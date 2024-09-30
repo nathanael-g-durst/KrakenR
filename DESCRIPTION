@@ -1,0 +1,26 @@
+Package: KrakenR
+Title: Comprehensive R Interface for Accessing Kraken Cryptocurrency Exchange REST API
+Version: 0.0.0.9000
+Authors@R: 
+    c(
+      person("Nathanaël", "Dürst", , "nathanael.durst@unil.ch", role = c("aut", "cre")),
+      person("Jane", "Doe", , "jane.doe@example.com", role = "aut"),
+      person("Jane", "Doe", , "jane.doe@example.com", role = "aut"),
+      person("Jane", "Doe", , "jane.doe@example.com", role = "aut")
+    )
+Description: KrakenR provides a comprehensive R interface to access data from the Kraken cryptocurrency exchange REST API.
+  It allows users to retrieve various market data, such as asset information, system status, trading pairs, and price data.
+  The package is designed to facilitate efficient data access for analysis, strategy development, and monitoring of cryptocurrency market trends.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 3.5.0)
+Imports:
+    jsonlite,
+    dplyr,
+    tidyr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
