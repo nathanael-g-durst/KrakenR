@@ -88,7 +88,7 @@ getAssets <- function(assets = "All") {
 
   # Attempt to unnest columns if needed
   finalResult <- tryCatch({
-    tidyr::unnest(finalResult, cols = c(3, 4, 5, 6, 7, 8))
+    tidyr::unnest(finalResult, cols = c(1, 2, 3, 4, 5, 6, 7, 8))
   }, error = function(e) {
     stop("Error unnesting the final result: ", e$message)
   })
