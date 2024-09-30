@@ -94,6 +94,9 @@ getAssets <- function(assets = "All") {
     stop("Error unnesting the final result: ", e$message)
   })
 
+  # Ensure all columns are correctly converted to their respective types
+  finalResult <- dplyr::mutate_if(finalResult, is.list, unlist)
+
   # Return the clean data frame
   return(finalResult)
 }
