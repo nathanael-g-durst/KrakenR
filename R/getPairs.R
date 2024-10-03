@@ -3,7 +3,7 @@
 #' This function fetches detailed information about tradable asset pairs from the Kraken API, either for all pairs or a specified subset.
 #'
 #' @param pairs A character vector specifying the pairs to retrieve. Use "All" to fetch data for all pairs.
-#'               For specific pairs, provide their abbreviations (e.g., "XBTUSD" or c("ETHUSD", "BTCUSDT")). Default is "All".
+#'               For specific pairs, provide their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".
 #' @param info A character vector to specify the level of detail ("info", "leverage", "fees", "margin"). Default is "info".
 #' @param country_code A single character string specifying the country code to filter the pairs. Use NULL if not needed. Default is NULL.
 #'
@@ -15,10 +15,10 @@
 #'
 #' @examples
 #' getPairs()
-#' getPairs("ETHUSD")
-#' getPairs(c("BTCUSD", "ETHUSD"), info = "fees")
+#' getPairs("ADAEUR")
+#' getPairs(c("ADAEUR", "BTCUSD"), info = "fees")
 #' getPairs("ADAEUR", country_code = "CH")
-#' getPairs("XBTUSD", country_code = "US:TX")
+#' getPairs(country_code = "US:TX")
 
 
 getPairs <- function(pairs = "All", info = "info", country_code = NULL) {

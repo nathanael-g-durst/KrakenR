@@ -2,7 +2,7 @@
 #'
 #' This function fetches OHLC (Open, High, Low, Close) data from the Kraken API for a specified trading pair.
 #'
-#' @param pair A character string specifying the trading pair (e.g., "XBTUSD"). This is a required parameter.
+#' @param pair A character string specifying the trading pair (e.g., "ADAEUR"). This is a required parameter.
 #' @param interval A time frame interval in minutes or in a user-friendly format (e.g., "1h" for 1 hour, "1d" for 1 day, etc.).
 #'                Possible values are "1m", "5m", "15m", "30m", "1h", "4h", "1d", "1w", "2w", or numeric values in minutes.
 #'                Default is 1 minute.

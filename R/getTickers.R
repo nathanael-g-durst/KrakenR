@@ -3,15 +3,15 @@
 #' This function fetches detailed ticker information from the Kraken API for specified trading pairs or all available pairs.
 #'
 #' @param pairs A character vector specifying the pairs to retrieve ticker information for. Use "All" to fetch data for all pairs.
-#'               For specific pairs, provide their abbreviations (e.g., "XBTUSD" or c("ETHUSD", "BTCUSDT")). Default is "All".
+#'               For specific pairs, provide their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".
 #'
 #' @return A data frame containing detailed ticker information for the requested pairs with renamed and split columns, where applicable, and all numbers treated as numeric.
 #' @export
 #'
 #' @examples
 #' getTickers()
-#' getTickers("XBTUSD")
-#' getTickers(c("ETHUSD", "BTCUSDT"))
+#' getTickers("ADAEUR")
+#' getTickers(c("ADAEUR", "BTCUSD"))
 
 
 getTickers <- function(pairs = "All") {
