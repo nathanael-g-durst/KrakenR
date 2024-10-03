@@ -16,6 +16,12 @@ test_that("getSpreads returns a list with data frame and timestamp when requeste
   expect_type(result$last, "integer")
 })
 
+## Test for Correct Return Types When Timestamp is Included
+test_that("getSpreads returns correct timestamp type when requested", {
+  result <- getSpreads("XTZUSD", timestamp = TRUE)
+  expect_type(result$last, "integer")
+})
+
 ## Test for Column Names and Data Types
 test_that("getSpreads returns data frame with correct columns", {
   result <- getSpreads("XTZUSD")
@@ -39,7 +45,20 @@ test_that("getSpreads returns data since specified timestamp", {
   expect_true(all(result$Time >= anytime::anytime("2024-10-01 00:00:00")))
 })
 
+## Test for Large Dataset
+test_that("getSpreads handles large datasets", {
+  result <- getSpreads("XTZUSD", timestamp = TRUE)
+  expect_gte(nrow(result$spreads), 100)  # Assume large dataset has 100+ rows
+})
+
+
 # Negative tests
+
+## Test for Pair Input Length
+test_that("getSpreads throws error for multiple pairs in input", {
+  expect_error(getSpreads(c("XTZUSD", "ADAEUR")), "Invalid input: 'pair' must be a single character string.")
+})
+
 
 ## Test for Invalid Input Handling (Non-Character Pair)
 test_that("getSpreads throws error for non-character pair input", {
