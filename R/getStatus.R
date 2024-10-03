@@ -7,6 +7,7 @@
 #'
 #' @return A character string if `data = "status"` or `data = "timestamp"`. A named vector if `data = "both"`.
 #' @export
+#'
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples

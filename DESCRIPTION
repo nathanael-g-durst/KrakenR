@@ -19,7 +19,10 @@ Depends: R (>= 3.5.0)
 Imports:
     jsonlite,
     dplyr,
-    tidyr
+    tidyr,
+    anytime,
+    magrittr,
+    rlang
 Suggests: 
     knitr,
     rmarkdown

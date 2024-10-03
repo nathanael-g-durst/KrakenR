@@ -9,6 +9,7 @@
 #'
 #' @return A data frame containing detailed information about the requested asset pairs with nested lists for columns with multiple values.
 #' @export
+#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr bind_rows
 #' @importFrom tidyr unnest

@@ -8,6 +8,11 @@
 #' @return A data frame containing detailed ticker information for the requested pairs with renamed and split columns, where applicable, and all numbers treated as numeric.
 #' @export
 #'
+#' @importFrom jsonlite fromJSON
+#' @importFrom dplyr bind_rows mutate select
+#' @importFrom magrittr %>%
+#' @importFrom rlang sym
+#'
 #' @examples
 #' getTickers()
 #' getTickers("ADAEUR")
@@ -84,71 +89,71 @@ getTickers <- function(pairs = "All") {
   # Rename the columns to be more descriptive
   colnames(finalResult) <- c("PairID", "Ask", "Bid", "LastTradeClosed", "Volume", "VWAP", "Trades", "Low", "High", "Open", "Pair")
 
-  # Split columns with multiple values (Ask, Bid, LastTradeClosed) and convert to numeric
+  # Split columns with multiple values (Ask, Bid, LastTradeClosed) and convert to numeric using Standard Evaluation
   if ("Ask" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Ask_Price = as.numeric(sapply(Ask, function(x) x[1])),
-                                 Ask_WholeLotVolume = as.numeric(sapply(Ask, function(x) x[2])),
-                                 Ask_LotVolume = as.numeric(sapply(Ask, function(x) x[3]))
-    ) %>% dplyr::select(-Ask)
+                                 !!rlang::sym("Ask_Price") := as.numeric(sapply(!!rlang::sym("Ask"), function(x) x[1])),
+                                 !!rlang::sym("Ask_WholeLotVolume") := as.numeric(sapply(!!rlang::sym("Ask"), function(x) x[2])),
+                                 !!rlang::sym("Ask_LotVolume") := as.numeric(sapply(!!rlang::sym("Ask"), function(x) x[3]))
+    ) %>% dplyr::select(-!!rlang::sym("Ask"))
   }
 
   if ("Bid" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Bid_Price = as.numeric(sapply(Bid, function(x) x[1])),
-                                 Bid_WholeLotVolume = as.numeric(sapply(Bid, function(x) x[2])),
-                                 Bid_LotVolume = as.numeric(sapply(Bid, function(x) x[3]))
-    ) %>% dplyr::select(-Bid)
+                                 !!rlang::sym("Bid_Price") := as.numeric(sapply(!!rlang::sym("Bid"), function(x) x[1])),
+                                 !!rlang::sym("Bid_WholeLotVolume") := as.numeric(sapply(!!rlang::sym("Bid"), function(x) x[2])),
+                                 !!rlang::sym("Bid_LotVolume") := as.numeric(sapply(!!rlang::sym("Bid"), function(x) x[3]))
+    ) %>% dplyr::select(-!!rlang::sym("Bid"))
   }
 
   if ("LastTradeClosed" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 LastTrade_Price = as.numeric(sapply(LastTradeClosed, function(x) x[1])),
-                                 LastTrade_LotVolume = as.numeric(sapply(LastTradeClosed, function(x) x[2]))
-    ) %>% dplyr::select(-LastTradeClosed)
+                                 !!rlang::sym("LastTrade_Price") := as.numeric(sapply(!!rlang::sym("LastTradeClosed"), function(x) x[1])),
+                                 !!rlang::sym("LastTrade_LotVolume") := as.numeric(sapply(!!rlang::sym("LastTradeClosed"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("LastTradeClosed"))
   }
 
   # Split other columns with today and last 24 hours data, and convert to numeric
   if ("Volume" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Volume_Today = as.numeric(sapply(Volume, function(x) x[1])),
-                                 Volume_24h = as.numeric(sapply(Volume, function(x) x[2]))
-    ) %>% dplyr::select(-Volume)
+                                 !!rlang::sym("Volume_Today") := as.numeric(sapply(!!rlang::sym("Volume"), function(x) x[1])),
+                                 !!rlang::sym("Volume_24h") := as.numeric(sapply(!!rlang::sym("Volume"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("Volume"))
   }
 
   if ("VWAP" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 VWAP_Today = as.numeric(sapply(VWAP, function(x) x[1])),
-                                 VWAP_24h = as.numeric(sapply(VWAP, function(x) x[2]))
-    ) %>% dplyr::select(-VWAP)
+                                 !!rlang::sym("VWAP_Today") := as.numeric(sapply(!!rlang::sym("VWAP"), function(x) x[1])),
+                                 !!rlang::sym("VWAP_24h") := as.numeric(sapply(!!rlang::sym("VWAP"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("VWAP"))
   }
 
   if ("Trades" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Trades_Today = as.numeric(sapply(Trades, function(x) x[1])),
-                                 Trades_24h = as.numeric(sapply(Trades, function(x) x[2]))
-    ) %>% dplyr::select(-Trades)
+                                 !!rlang::sym("Trades_Today") := as.numeric(sapply(!!rlang::sym("Trades"), function(x) x[1])),
+                                 !!rlang::sym("Trades_24h") := as.numeric(sapply(!!rlang::sym("Trades"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("Trades"))
   }
 
   if ("Low" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Low_Today = as.numeric(sapply(Low, function(x) x[1])),
-                                 Low_24h = as.numeric(sapply(Low, function(x) x[2]))
-    ) %>% dplyr::select(-Low)
+                                 !!rlang::sym("Low_Today") := as.numeric(sapply(!!rlang::sym("Low"), function(x) x[1])),
+                                 !!rlang::sym("Low_24h") := as.numeric(sapply(!!rlang::sym("Low"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("Low"))
   }
 
   if ("High" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 High_Today = as.numeric(sapply(High, function(x) x[1])),
-                                 High_24h = as.numeric(sapply(High, function(x) x[2]))
-    ) %>% dplyr::select(-High)
+                                 !!rlang::sym("High_Today") := as.numeric(sapply(!!rlang::sym("High"), function(x) x[1])),
+                                 !!rlang::sym("High_24h") := as.numeric(sapply(!!rlang::sym("High"), function(x) x[2]))
+    ) %>% dplyr::select(-!!rlang::sym("High"))
   }
 
   # Unnest the "Open" column (single value) and convert to numeric
   if ("Open" %in% colnames(finalResult)) {
     finalResult <- dplyr::mutate(finalResult,
-                                 Open_Price = as.numeric(sapply(Open, function(x) x[1]))
-    ) %>% dplyr::select(-Open)
+                                 !!rlang::sym("Open_Price") := as.numeric(sapply(!!rlang::sym("Open"), function(x) x[1]))
+    ) %>% dplyr::select(-!!rlang::sym("Open"))
   }
 
   # Return the cleaned data frame with renamed and split columns

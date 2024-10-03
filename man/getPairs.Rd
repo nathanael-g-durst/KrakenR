@@ -8,7 +8,7 @@ getPairs(pairs = "All", info = "info", country_code = NULL)
 }
 \arguments{
 \item{pairs}{A character vector specifying the pairs to retrieve. Use "All" to fetch data for all pairs.
-For specific pairs, provide their abbreviations (e.g., "XBTUSD" or c("ETHUSD", "BTCUSDT")). Default is "All".}
+For specific pairs, provide their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".}
 
 \item{info}{A character vector to specify the level of detail ("info", "leverage", "fees", "margin"). Default is "info".}
 
@@ -22,8 +22,8 @@ This function fetches detailed information about tradable asset pairs from the K
 }
 \examples{
 getPairs()
-getPairs("ETHUSD")
-getPairs(c("BTCUSD", "ETHUSD"), info = "fees")
+getPairs("ADAEUR")
+getPairs(c("ADAEUR", "BTCUSD"), info = "fees")
 getPairs("ADAEUR", country_code = "CH")
-getPairs("XBTUSD", country_code = "US:TX")
+getPairs(country_code = "US:TX")
 }

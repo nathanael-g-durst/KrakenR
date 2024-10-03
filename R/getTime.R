@@ -7,6 +7,7 @@
 #'
 #' @return A POSIXct object if `format = "unix"` or a character string in RFC 1123 format if `format = "rfc"`.
 #' @export
+#'
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples

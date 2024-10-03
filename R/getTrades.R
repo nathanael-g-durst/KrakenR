@@ -12,6 +12,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr mutate arrange desc
 #' @importFrom anytime anytime
+#' @importFrom rlang sym
 #'
 #' @examples
 #' getTrades("XTZUSD")
@@ -72,16 +73,16 @@ getTrades <- function(pair, since = NULL, count = NULL) {
   trades_df <- as.data.frame(trades_data, stringsAsFactors = FALSE)
   colnames(trades_df) <- c("Price", "Volume", "Time", "Order_Type", "Execution_Type", "Miscellaneous", "Trade_ID")
 
-  # Convert numeric columns to proper numeric format and sort by time (latest trade first)
+  # Convert numeric columns to proper numeric format using Standard Evaluation (SE)
   trades_df <- dplyr::mutate(trades_df,
-                             Price = as.numeric(Price),
-                             Volume = as.numeric(Volume),
-                             Time = anytime::anytime(as.numeric(Time)),
-                             Order_Type = ifelse(Order_Type == "b", "buy", "sell"),
-                             Execution_Type = ifelse(Execution_Type == "m", "market", "limit"))
+                             !!rlang::sym("Price") := as.numeric(!!rlang::sym("Price")),
+                             !!rlang::sym("Volume") := as.numeric(!!rlang::sym("Volume")),
+                             !!rlang::sym("Time") := anytime::anytime(as.numeric(!!rlang::sym("Time"))),
+                             !!rlang::sym("Order_Type") := ifelse(!!rlang::sym("Order_Type") == "b", "buy", "sell"),
+                             !!rlang::sym("Execution_Type") := ifelse(!!rlang::sym("Execution_Type") == "m", "market", "limit"))
 
   # Sort by time in descending order (latest first)
-  trades_df <- dplyr::arrange(trades_df, dplyr::desc(Time))
+  trades_df <- dplyr::arrange(trades_df, dplyr::desc(!!rlang::sym("Time")))
 
   return(trades_df)
 }

@@ -14,6 +14,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr mutate
 #' @importFrom anytime anytime
+#' @importFrom rlang sym
 #'
 #' @examples
 #' getOHLC("ADAEUR")
@@ -79,16 +80,16 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
   ohlc_df <- as.data.frame(ohlc_data, stringsAsFactors = FALSE)
   colnames(ohlc_df) <- c("Time", "Open", "High", "Low", "Close", "VWAP", "Volume", "Count")
 
-  # Convert numeric columns to proper numeric format
+  # Convert numeric columns to proper numeric format using Standard Evaluation (SE)
   ohlc_df <- dplyr::mutate(ohlc_df,
-                           Time = anytime::anytime(as.numeric(Time)),
-                           Open = as.numeric(Open),
-                           High = as.numeric(High),
-                           Low = as.numeric(Low),
-                           Close = as.numeric(Close),
-                           VWAP = as.numeric(VWAP),
-                           Volume = as.numeric(Volume),
-                           Count = as.numeric(Count))
+                           !!rlang::sym("Time") := anytime::anytime(as.numeric(ohlc_df$Time)),
+                           !!rlang::sym("Open") := as.numeric(ohlc_df$Open),
+                           !!rlang::sym("High") := as.numeric(ohlc_df$High),
+                           !!rlang::sym("Low") := as.numeric(ohlc_df$Low),
+                           !!rlang::sym("Close") := as.numeric(ohlc_df$Close),
+                           !!rlang::sym("VWAP") := as.numeric(ohlc_df$VWAP),
+                           !!rlang::sym("Volume") := as.numeric(ohlc_df$Volume),
+                           !!rlang::sym("Count") := as.numeric(ohlc_df$Count))
 
   return(ohlc_df)
 }
