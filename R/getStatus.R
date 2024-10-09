@@ -16,7 +16,6 @@
 #' getStatus("timestamp")
 
 
-
 getStatus <- function(data = "both") {
 
   # Kraken API
