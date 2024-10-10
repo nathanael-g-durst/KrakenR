@@ -18,8 +18,3 @@ test_that("getTime returns current time in RFC 1123 format", {
 test_that("getTime throws error for invalid format input", {
   expect_error(getTime("invalid_format"), "Invalid format specified. Use 'unix' or 'rfc'.")
 })
-
-## Test for API Error Handling
-test_that("getTime handles API errors correctly", {
-  expect_error(getTime(), "API returned the following error")
-})

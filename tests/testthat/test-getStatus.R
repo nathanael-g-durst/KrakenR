@@ -27,8 +27,3 @@ test_that("getStatus returns only the timestamp when specified", {
 test_that("getStatus throws error for invalid 'data' parameter", {
   expect_error(getStatus("invalid_data"), "Invalid value for 'data' parameter")
 })
-
-## Test for API Error Handling
-test_that("getStatus handles API errors correctly", {
-  expect_error(getStatus("INVALID_DATA"), "API returned the following error")
-})

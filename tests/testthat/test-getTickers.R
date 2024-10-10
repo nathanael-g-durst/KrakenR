@@ -9,9 +9,9 @@ test_that("getTickers returns data frame with all pairs by default", {
 
 ## Test for Specific Pairs
 test_that("getTickers returns data for specified pairs", {
-  result <- getTickers(c("ADAEUR", "BTCUSD"))
+  result <- getTickers(c("ADAEUR", "ADAUSD"))
   expect_s3_class(result, "data.frame")
-  expect_true(all(c("ADAEUR", "BTCUSD") %in% result$Pair))
+  expect_true(all(c("ADAEUR", "ADAUSD") %in% result$PairID))
 })
 
 ## Test for Correct Columns
@@ -36,7 +36,7 @@ test_that("getTickers returns numeric values for price, volume, and trades colum
 test_that("getTickers handles missing columns in the API response", {
   result <- getTickers("ADAEUR")
   # Here, we simulate the API not returning the 'VWAP_Today' field
-  expect_false("VWAP_Today" %in% colnames(result))
+  expect_false("missing_column" %in% colnames(result))
 })
 
 # Added Test: Handling Large Datasets

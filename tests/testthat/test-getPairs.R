@@ -9,9 +9,9 @@ test_that("getPairs returns data frame with all pairs by default", {
 
 ## Test for Specific Pair
 test_that("getPairs returns data for specified pairs", {
-  result <- getPairs(c("ADAEUR", "BTCUSD"))
+  result <- getPairs(c("ADAEUR", "ADAUSD"))
   expect_s3_class(result, "data.frame")
-  expect_true(all(c("ADAEUR", "BTCUSD") %in% result$Pair))
+  expect_true(all(c("ADAEUR", "ADAUSD") %in% result$PairID))
 })
 
 ## Test for Info Parameter
