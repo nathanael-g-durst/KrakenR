@@ -1,11 +1,17 @@
 #' Retrieve Order Book Data from Kraken Exchange
 #'
-#' This function fetches order book data from the Kraken API for a specified trading pair.
+#' This function fetches order book data from the Kraken API
+#' for a specified trading pair.
 #'
-#' @param pair A character string specifying the trading pair (e.g., "ADAEUR"). This is a required parameter.
-#' @param count An optional integer between 1 and 500 specifying the number of orders to retrieve. Default is NULL.
+#' @param pair A character string specifying the trading pair (e.g., "ADAEUR").
+#'              This is a required parameter.
+#' @param count An optional integer between 1 and 500 specifying the number
+#'              of orders to retrieve. Default is NULL.
 #'
-#' @return A data frame containing the order book data for the requested trading pair, with bid orders appearing first (sorted by price ascending) followed by ask orders (sorted by price ascending).
+#' @return A data frame containing the order book data for
+#'         the requested trading pair,
+#'         with bid orders appearing first (sorted by price ascending)
+#'         followed by ask orders (sorted by price ascending).
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -47,7 +53,8 @@ getOB <- function(pair, count = NULL) {
 
   # Check for API errors
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ", paste(jsonFile[["error"]],
+                                                        collapse = ", "))
   }
 
   # Extract the order book data
@@ -66,14 +73,20 @@ getOB <- function(pair, count = NULL) {
 
   # Convert numeric columns to the proper format using Standard Evaluation (SE)
   asks <- dplyr::mutate(asks,
-                        !!dplyr::sym("Ask_Price") := as.numeric(asks$Ask_Price),
-                        !!dplyr::sym("Ask_Volume") := as.numeric(asks$Ask_Volume),
-                        !!dplyr::sym("Ask_Timestamp") := anytime::anytime(as.numeric(asks$Ask_Timestamp)))
+                        !!dplyr::sym("Ask_Price") :=
+                          as.numeric(asks$Ask_Price),
+                        !!dplyr::sym("Ask_Volume") :=
+                          as.numeric(asks$Ask_Volume),
+                        !!dplyr::sym("Ask_Timestamp") :=
+                          anytime::anytime(as.numeric(asks$Ask_Timestamp)))
 
   bids <- dplyr::mutate(bids,
-                        !!dplyr::sym("Bid_Price") := as.numeric(bids$Bid_Price),
-                        !!dplyr::sym("Bid_Volume") := as.numeric(bids$Bid_Volume),
-                        !!dplyr::sym("Bid_Timestamp") := anytime::anytime(as.numeric(bids$Bid_Timestamp)))
+                        !!dplyr::sym("Bid_Price") :=
+                          as.numeric(bids$Bid_Price),
+                        !!dplyr::sym("Bid_Volume") :=
+                          as.numeric(bids$Bid_Volume),
+                        !!dplyr::sym("Bid_Timestamp") :=
+                          anytime::anytime(as.numeric(bids$Bid_Timestamp)))
 
   # Sort bids (lowest to highest) and asks (lowest to highest)
   sorted_bids <- dplyr::arrange(bids, !!dplyr::sym("Bid_Price"))

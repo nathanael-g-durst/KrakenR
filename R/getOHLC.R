@@ -1,12 +1,18 @@
 #' Retrieve OHLC Data from Kraken Exchange
 #'
-#' This function fetches OHLC (Open, High, Low, Close) data from the Kraken API for a specified trading pair.
+#' This function fetches OHLC (Open, High, Low, Close) data from the Kraken API
+#' for a specified trading pair.
 #'
-#' @param pair A character string specifying the trading pair (e.g., "ADAEUR"). This is a required parameter.
-#' @param interval A time frame interval in minutes or in a user-friendly format (e.g., "1h" for 1 hour, "1d" for 1 day, etc.).
-#'                Possible values are "1m", "5m", "15m", "30m", "1h", "4h", "1d", "1w", "2w", or numeric values in minutes.
-#'                Default is 1 minute.
-#' @param since A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL (returns all available data).
+#' @param pair A character string specifying the trading pair (e.g., "ADAEUR").
+#'              This is a required parameter.
+#' @param interval A time frame interval in minutes or in a
+#'                  user-friendly format (e.g., "1h" for 1 hour,
+#'                  "1d" for 1 day, etc.). Possible values are "1m", "5m",
+#'                  "15m", "30m", "1h", "4h", "1d", "1w", "2w",
+#'                  or numeric values in minutes. Default is 1 minute.
+#' @param since A character string for a human-readable date-time
+#'              (e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+#'              Default is NULL (returns all available data).
 #'
 #' @return A data frame containing OHLC data for the requested trading pair.
 #' @export
@@ -38,7 +44,8 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
     )
     interval <- interval_map[[interval]]
     if (is.null(interval)) {
-      stop("Invalid interval format. Please use '1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '2w', or the corresponding amount of time in minutes (e.g., '60' for 1 hour).")
+      stop("Invalid interval format. Please use '1m', '5m', '15m', '30m', '1h',
+           '4h', '1d', '1w', '2w', or the corresponding amount of time in minutes (e.g., '60' for 1 hour).")
     }
   } else if (!is.numeric(interval)) {
     stop("Interval must be a numeric value representing minutes or a valid time format string (e.g., '1h').")
