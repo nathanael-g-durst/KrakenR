@@ -45,22 +45,26 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
     interval <- interval_map[[interval]]
     if (is.null(interval)) {
       stop("Invalid interval format. Please use '1m', '5m', '15m', '30m', '1h',
-           '4h', '1d', '1w', '2w', or the corresponding amount of time in minutes (e.g., '60' for 1 hour).")
+           '4h', '1d', '1w', '2w', or the corresponding amount of time
+           in minutes (e.g., '60' for 1 hour).")
     }
   } else if (!is.numeric(interval)) {
-    stop("Interval must be a numeric value representing minutes or a valid time format string (e.g., '1h').")
+    stop("Interval must be a numeric value representing minutes or a valid time
+         format string (e.g., '1h').")
   }
 
   # Convert human-readable date-time into Unix timestamp
   if (!is.null(since) && !is.numeric(since)) {
     since <- as.numeric(anytime::anytime(since))
     if (is.na(since)) {
-      stop("Invalid 'since' format. Please provide a valid date-time string or a Unix timestamp.")
+      stop("Invalid 'since' format. Please provide a valid date-time string
+           or a Unix timestamp.")
     }
   }
 
   # Build the URL for the OHLC data request
-  url <- paste0("https://api.kraken.com/0/public/OHLC?pair=", pair, "&interval=", interval)
+  url <- paste0("https://api.kraken.com/0/public/OHLC?pair=",
+                pair, "&interval=", interval)
   if (!is.null(since)) {
     url <- paste0(url, "&since=", since)
   }
@@ -74,7 +78,8 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
 
   # Check for API errors
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ",
+         paste(jsonFile[["error"]], collapse = ", "))
   }
 
   # Extract the OHLC data
@@ -85,18 +90,27 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
 
   # Convert OHLC data into a data frame and label columns
   ohlc_df <- as.data.frame(ohlc_data, stringsAsFactors = FALSE)
-  colnames(ohlc_df) <- c("Time", "Open", "High", "Low", "Close", "VWAP", "Volume", "Count")
+  colnames(ohlc_df) <- c("Time", "Open", "High", "Low", "Close",
+                         "VWAP", "Volume", "Count")
 
-  # Convert numeric columns to proper numeric format using Standard Evaluation (SE)
+  # Convert numeric columns to numeric format using Standard Evaluation (SE)
   ohlc_df <- dplyr::mutate(ohlc_df,
-                           !!rlang::sym("Time") := anytime::anytime(as.numeric(ohlc_df$Time)),
-                           !!rlang::sym("Open") := as.numeric(ohlc_df$Open),
-                           !!rlang::sym("High") := as.numeric(ohlc_df$High),
-                           !!rlang::sym("Low") := as.numeric(ohlc_df$Low),
-                           !!rlang::sym("Close") := as.numeric(ohlc_df$Close),
-                           !!rlang::sym("VWAP") := as.numeric(ohlc_df$VWAP),
-                           !!rlang::sym("Volume") := as.numeric(ohlc_df$Volume),
-                           !!rlang::sym("Count") := as.numeric(ohlc_df$Count))
+                           !!rlang::sym("Time") :=
+                             anytime::anytime(as.numeric(ohlc_df$Time)),
+                           !!rlang::sym("Open") :=
+                             as.numeric(ohlc_df$Open),
+                           !!rlang::sym("High") :=
+                             as.numeric(ohlc_df$High),
+                           !!rlang::sym("Low") :=
+                             as.numeric(ohlc_df$Low),
+                           !!rlang::sym("Close") :=
+                             as.numeric(ohlc_df$Close),
+                           !!rlang::sym("VWAP") :=
+                             as.numeric(ohlc_df$VWAP),
+                           !!rlang::sym("Volume") :=
+                             as.numeric(ohlc_df$Volume),
+                           !!rlang::sym("Count") :=
+                             as.numeric(ohlc_df$Count))
 
   return(ohlc_df)
 }

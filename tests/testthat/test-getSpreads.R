@@ -7,7 +7,8 @@ test_that("getSpreads returns a data frame by default", {
 })
 
 ## Test for Correct Return Type (With Timestamp)
-test_that("getSpreads returns a list with data frame and timestamp when requested", {
+test_that("getSpreads returns a list with data frame and
+          timestamp when requested", {
   result <- getSpreads("XTZUSD", timestamp = TRUE)
   expect_type(result, "list")
   expect_true("spreads" %in% names(result))
@@ -56,18 +57,21 @@ test_that("getSpreads handles large datasets", {
 
 ## Test for Pair Input Length
 test_that("getSpreads throws error for multiple pairs in input", {
-  expect_error(getSpreads(c("XTZUSD", "ADAEUR")), "Invalid input: 'pair' must be a single character string.")
+  expect_error(getSpreads(c("XTZUSD", "ADAEUR")), "Invalid input: 'pair'
+               must be a single character string.")
 })
 
 
 ## Test for Invalid Input Handling (Non-Character Pair)
 test_that("getSpreads throws error for non-character pair input", {
-  expect_error(getSpreads(123), "Invalid input: 'pair' must be a single character string.")
+  expect_error(getSpreads(123), "Invalid input: 'pair' must be
+               a single character string.")
 })
 
 ## Test for Invalid Input Handling (Invalid Timestamp Format)
 test_that("getSpreads throws error for invalid 'since' format", {
-  expect_error(getSpreads("XTZUSD", since = "invalid_date"), "Invalid 'since' format.")
+  expect_error(getSpreads("XTZUSD", since = "invalid_date"),
+               "Invalid 'since' format.")
 })
 
 ## Test for Correct API Error Handling

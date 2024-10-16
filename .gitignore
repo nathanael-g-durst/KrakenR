@@ -2,3 +2,4 @@
 inst/doc
 .Rhistory
 .RData
+tests/testthat/testthat-problems.rds

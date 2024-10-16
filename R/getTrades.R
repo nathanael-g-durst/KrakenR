@@ -1,12 +1,19 @@
 #' Retrieve Recent Trades Data from Kraken Exchange
 #'
-#' This function fetches recent trade data from the Kraken API for a specified trading pair.
+#' This function fetches recent trade data from the Kraken API
+#' for a specified trading pair.
 #'
-#' @param pair A character string specifying the trading pair (e.g., "XTZUSD", "ADAEUR"). This is a required parameter.
-#' @param since A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL (returns all available trades).
-#' @param count An optional integer between 1 and 1000 specifying the number of trades to retrieve. Default is NULL (returns up to 1000 trades).
+#' @param pair A character string specifying the trading pair
+#'              (e.g., "XTZUSD", "ADAEUR"). This is a required parameter.
+#' @param since A character string for a human-readable date-time
+#'              (e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+#'              Default is NULL (returns all available trades).
+#' @param count An optional integer between 1 and 1000 specifying the number
+#'              of trades to retrieve.
+#'              Default is NULL (returns up to 1000 trades).
 #'
-#' @return A data frame containing the recent trade data for the requested trading pair.
+#' @return A data frame containing the recent trade data
+#'          for the requested trading pair.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -31,7 +38,8 @@ getTrades <- function(pair, since = NULL, count = NULL) {
   if (!is.null(since) && !is.numeric(since)) {
     since <- as.numeric(anytime::anytime(since))
     if (is.na(since)) {
-      stop("Invalid 'since' format. Please provide a valid date-time string or a Unix timestamp.")
+      stop("Invalid 'since' format. Please provide a valid date-time
+           string or a Unix timestamp.")
     }
   }
 
@@ -60,7 +68,8 @@ getTrades <- function(pair, since = NULL, count = NULL) {
 
   # Check for API errors
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ",
+         paste(jsonFile[["error"]], collapse = ", "))
   }
 
   # Extract the trades data
@@ -71,15 +80,24 @@ getTrades <- function(pair, since = NULL, count = NULL) {
 
   # Convert trades data into a data frame and label columns
   trades_df <- as.data.frame(trades_data, stringsAsFactors = FALSE)
-  colnames(trades_df) <- c("Price", "Volume", "Time", "Order_Type", "Execution_Type", "Miscellaneous", "Trade_ID")
+  colnames(trades_df) <- c("Price", "Volume", "Time", "Order_Type",
+                           "Execution_Type", "Miscellaneous", "Trade_ID")
 
-  # Convert numeric columns to proper numeric format using Standard Evaluation (SE)
+  # Convert numeric columns to numeric format using Standard Evaluation (SE)
   trades_df <- dplyr::mutate(trades_df,
-                             !!rlang::sym("Price") := as.numeric(!!rlang::sym("Price")),
-                             !!rlang::sym("Volume") := as.numeric(!!rlang::sym("Volume")),
-                             !!rlang::sym("Time") := anytime::anytime(as.numeric(!!rlang::sym("Time"))),
-                             !!rlang::sym("Order_Type") := ifelse(!!rlang::sym("Order_Type") == "b", "buy", "sell"),
-                             !!rlang::sym("Execution_Type") := ifelse(!!rlang::sym("Execution_Type") == "m", "market", "limit"))
+                             !!rlang::sym("Price") :=
+                               as.numeric(!!rlang::sym("Price")),
+                             !!rlang::sym("Volume") :=
+                               as.numeric(!!rlang::sym("Volume")),
+                             !!rlang::sym("Time") :=
+                               anytime::anytime(as.numeric(
+                                 !!rlang::sym("Time"))),
+                             !!rlang::sym("Order_Type") :=
+                               ifelse(!!rlang::sym("Order_Type") == "b",
+                                      "buy", "sell"),
+                             !!rlang::sym("Execution_Type") :=
+                               ifelse(!!rlang::sym("Execution_Type") == "m",
+                                      "market", "limit"))
 
   # Sort by time in descending order (latest first)
   trades_df <- dplyr::arrange(trades_df, dplyr::desc(!!rlang::sym("Time")))

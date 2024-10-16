@@ -16,5 +16,6 @@ test_that("getTime returns current time in RFC 1123 format", {
 
 ## Test for Invalid Format Input
 test_that("getTime throws error for invalid format input", {
-  expect_error(getTime("invalid_format"), "Invalid format specified. Use 'unix' or 'rfc'.")
+  expect_error(getTime("invalid_format"),
+               "Invalid format specified. Use 'unix' or 'rfc'.")
 })

@@ -1,11 +1,15 @@
 #' Retrieve the Current System Status of the Kraken Exchange
 #'
-#' This function fetches the current system status from the Kraken API, including both the operational status and the timestamp.
+#' This function fetches the current system status from the Kraken API,
+#' including both the operational status and the timestamp.
 #'
-#' @param data A character string specifying the type of data to return. Use "status" for the system status, "timestamp" for the timestamp,
-#' or "both" to retrieve both status and timestamp. The default is "both".
+#' @param data A character string specifying the type of data to return.
+#'              Use "status" for the system status, "timestamp" for
+#'              the timestamp, or "both" to retrieve both status and timestamp.
+#'              The default is "both".
 #'
-#' @return A character string if `data = "status"` or `data = "timestamp"`. A named vector if `data = "both"`.
+#' @return A character string if `data = "status"` or `data = "timestamp"`.
+#'          A named vector if `data = "both"`.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -30,7 +34,8 @@ getStatus <- function(data = "both") {
 
   # Check for errors in the API response
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ",
+         paste(jsonFile[["error"]], collapse = ", "))
   }
 
   # Check that the result exists
@@ -62,7 +67,8 @@ getStatus <- function(data = "both") {
     result <- c(status = status, timestamp = timestamp)
 
   } else {
-    stop("Invalid value for 'data' parameter. Use 'status', 'timestamp', or 'both'.")
+    stop("Invalid value for 'data' parameter. Use 'status',
+         'timestamp', or 'both'.")
   }
 
   # Return the results

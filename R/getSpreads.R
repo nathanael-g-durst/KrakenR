@@ -1,12 +1,19 @@
 #' Retrieve Recent Spreads Data from Kraken Exchange
 #'
-#' This function fetches recent spread data from the Kraken API for a specified trading pair.
+#' This function fetches recent spread data from the Kraken API for
+#' a specified trading pair.
 #'
-#' @param pair A character string specifying the trading pair (e.g., "XTZUSD", "ADAEUR"). This is a required parameter.
-#' @param since A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL.
-#' @param timestamp A logical value. If TRUE, the function returns both the spreads data frame and the last timestamp for future polling. If FALSE (default), it returns only the data frame.
+#' @param pair A character string specifying the trading pair (e.g., "XTZUSD",
+#'              "ADAEUR"). This is a required parameter.
+#' @param since A character string for a human-readable date-time
+#'              (e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+#'              Default is NULL.
+#' @param timestamp A logical value. If TRUE, the function returns both the
+#'                  spreads data frame and the last timestamp for future
+#'                  polling. If FALSE (default), it returns only the data frame.
 #'
-#' @return A data frame containing the spread data or a list containing the data frame and the last timestamp.
+#' @return A data frame containing the spread data or a list containing
+#'          the data frame and the last timestamp.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -29,7 +36,8 @@ getSpreads <- function(pair, since = NULL, timestamp = FALSE) {
   if (!is.null(since) && !is.numeric(since)) {
     since <- as.numeric(anytime::anytime(since))
     if (is.na(since)) {
-      stop("Invalid 'since' format. Please provide a valid date-time string or a Unix timestamp.")
+      stop("Invalid 'since' format. Please provide a valid date-time string
+           or a Unix timestamp.")
     }
   }
 
@@ -48,7 +56,8 @@ getSpreads <- function(pair, since = NULL, timestamp = FALSE) {
 
   # Check for API errors
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ",
+         paste(jsonFile[["error"]], collapse = ", "))
   }
 
   # Extract the spreads data
@@ -60,15 +69,19 @@ getSpreads <- function(pair, since = NULL, timestamp = FALSE) {
   # Extract the 'last' timestamp for future polling
   last_timestamp <- jsonFile[["result"]][["last"]]
 
-  # Convert spreads_data directly to a data frame and rename columns using Standard Evaluation
+  # Convert spreads_data directly to a data frame and rename columns
   spreads_df <- as.data.frame(spreads_data, stringsAsFactors = FALSE)
   colnames(spreads_df) <- c("Time", "Bid", "Ask")
 
   # Convert the Time, Bid, and Ask columns using Standard Evaluation
   spreads_df <- dplyr::mutate(spreads_df,
-                              !!rlang::sym("Time") := anytime::anytime(as.numeric(!!rlang::sym("Time"))),
-                              !!rlang::sym("Bid") := as.numeric(!!rlang::sym("Bid")),
-                              !!rlang::sym("Ask") := as.numeric(!!rlang::sym("Ask")))
+                              !!rlang::sym("Time") :=
+                                anytime::anytime(
+                                  as.numeric(!!rlang::sym("Time"))),
+                              !!rlang::sym("Bid") :=
+                                as.numeric(!!rlang::sym("Bid")),
+                              !!rlang::sym("Ask") :=
+                                as.numeric(!!rlang::sym("Ask")))
 
   # Return based on the 'timestamp' flag
   if (timestamp) {

@@ -4,13 +4,15 @@
 test_that("getOHLC returns data frame with OHLC data for a valid pair", {
   result <- getOHLC("ADAEUR")
   expect_s3_class(result, "data.frame")
-  expect_true(all(c("Time", "Open", "High", "Low", "Close", "VWAP", "Volume", "Count") %in% colnames(result)))
+  expect_true(all(c("Time", "Open", "High", "Low", "Close", "VWAP", "Volume",
+                    "Count") %in% colnames(result)))
 })
 
 ## Test for Specific Interval
 test_that("getOHLC returns correct data for specified interval", {
   result <- getOHLC("ADAEUR", interval = "1h")
-  expect_true(all(c("Time", "Open", "High", "Low", "Close") %in% colnames(result)))
+  expect_true(all(c("Time", "Open", "High", "Low", "Close")
+                  %in% colnames(result)))
 })
 
 ## Test for Since Parameter
@@ -31,17 +33,20 @@ test_that("getOHLC handles user-friendly intervals like '1h' and '1d'", {
 
 ## Test for Invalid Pair Input
 test_that("getOHLC throws error for invalid pair input", {
-  expect_error(getOHLC(123), "Invalid input: 'pair' must be a single character string.")
+  expect_error(getOHLC(123), "Invalid input: 'pair' must be
+               a single character string.")
 })
 
 ## Test for Invalid Interval Input
 test_that("getOHLC throws error for invalid interval format", {
-  expect_error(getOHLC("ADAEUR", interval = "invalid_interval"), "Invalid interval format")
+  expect_error(getOHLC("ADAEUR", interval = "invalid_interval"),
+               "Invalid interval format")
 })
 
 ## Test for Invalid Since Parameter
 test_that("getOHLC throws error for invalid 'since' format", {
-  expect_error(getOHLC("ADAEUR", since = "invalid_date"), "Invalid 'since' format.")
+  expect_error(getOHLC("ADAEUR", since = "invalid_date"),
+               "Invalid 'since' format.")
 })
 
 ## Test for API Error Handling

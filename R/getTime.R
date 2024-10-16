@@ -1,11 +1,14 @@
 #' Retrieve the Current Kraken Server Time
 #'
-#' This function fetches the current server time from the Kraken API in either UNIX timestamp or RFC 1123 format.
+#' This function fetches the current server time from the Kraken API in
+#' either UNIX timestamp or RFC 1123 format.
 #'
-#' @param format A character string specifying the time format to return. Use "unix" for UNIX timestamp or "rfc" for RFC 1123 format.
-#' The default is "unix".
+#' @param format A character string specifying the time format to return.
+#'                Use "unix" for UNIX timestamp or "rfc" for RFC 1123 format.
+#'                The default is "unix".
 #'
-#' @return A POSIXct object if `format = "unix"` or a character string in RFC 1123 format if `format = "rfc"`.
+#' @return A POSIXct object if `format = "unix"` or
+#'          a character string in RFC 1123 format if `format = "rfc"`.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -30,7 +33,8 @@ getTime <- function(format = "unix") {
 
   # Error check from the API response
   if (length(jsonFile[["error"]]) > 0 && jsonFile[["error"]][1] != "") {
-    stop("API returned the following error(s): ", paste(jsonFile[["error"]], collapse = ", "))
+    stop("API returned the following error(s): ",
+         paste(jsonFile[["error"]], collapse = ", "))
   }
 
   # Check that the result element exists

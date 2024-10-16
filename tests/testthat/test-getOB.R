@@ -16,7 +16,8 @@ test_that("getOB returns correct number of orders when count is specified", {
 ## Test for Correct Columns and Data Types
 test_that("getOB returns data frame with correct columns and types", {
   result <- getOB("ADAEUR")
-  expect_true(all(c("Bid_Price", "Bid_Volume", "Bid_Timestamp", "Ask_Price", "Ask_Volume", "Ask_Timestamp") %in% colnames(result)))
+  expect_true(all(c("Bid_Price", "Bid_Volume", "Bid_Timestamp", "Ask_Price",
+                    "Ask_Volume", "Ask_Timestamp") %in% colnames(result)))
   expect_type(result$Bid_Price, "double")
   expect_type(result$Ask_Price, "double")
 })
@@ -32,12 +33,14 @@ test_that("getOB returns sorted bids and asks", {
 
 ## Test for Invalid Pair Input
 test_that("getOB throws error for invalid pair input", {
-  expect_error(getOB(123), "Invalid input: 'pair' must be a single character string.")
+  expect_error(getOB(123), "Invalid input: 'pair' must be
+               a single character string.")
 })
 
 ## Test for Invalid Count Parameter
 test_that("getOB throws error for invalid count parameter", {
-  expect_error(getOB("ADAEUR", count = 600), "Invalid input: 'count' must be a number between 1 and 500.")
+  expect_error(getOB("ADAEUR", count = 600), "Invalid input: 'count'
+               must be a number between 1 and 500.")
 })
 
 ## Test for API Error Handling

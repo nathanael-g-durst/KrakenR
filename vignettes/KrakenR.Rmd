@@ -132,7 +132,8 @@ You can also filter by specific details such as leverage, fees, or margin.
 
 ```{r getting_asset_pair_information_example, echo=FALSE}
 # Preview of asset pair information in a simplified two-column table
-data_frame <- data.frame(Column = names(pairs_all), Example = as.character(pairs_all[1, ]))
+data_frame <- data.frame(Column = names(pairs_all),
+                         Example = as.character(pairs_all[1, ]))
 knitr::kable(data_frame)
 
 ```
@@ -172,7 +173,8 @@ This function provides real-time price, volume, and trading information.
 
 ```{r getting_ticker_information_example, echo=FALSE}
 # Preview of asset pair information in a simplified two-column table
-data_frame <- data.frame(Column = names(tickers_all), Example = as.character(tickers_all[1, ]))
+data_frame <- data.frame(Column = names(tickers_all),
+                         Example = as.character(tickers_all[1, ]))
 knitr::kable(data_frame)
 
 ```
