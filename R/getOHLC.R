@@ -44,21 +44,22 @@ getOHLC <- function(pair, interval = 1, since = NULL) {
     )
     interval <- interval_map[[interval]]
     if (is.null(interval)) {
-      stop("Invalid interval format. Please use '1m', '5m', '15m', '30m', '1h',
-           '4h', '1d', '1w', '2w', or the corresponding amount of time
-           in minutes (e.g., '60' for 1 hour).")
+      stop(paste("Invalid interval format. Please use '1m', '5m', '15m',",
+                 "'30m', '1h', '4h', '1d', '1w', '2w',",
+                 "or the corresponding amount of time in minutes",
+                 "(e.g., '60' for 1 hour)."))
     }
   } else if (!is.numeric(interval)) {
-    stop("Interval must be a numeric value representing minutes or a valid time
-         format string (e.g., '1h').")
+    stop(paste("Interval must be a numeric value representing",
+               "minutes or a valid time format string (e.g., '1h')."))
   }
 
   # Convert human-readable date-time into Unix timestamp
   if (!is.null(since) && !is.numeric(since)) {
     since <- as.numeric(anytime::anytime(since))
     if (is.na(since)) {
-      stop("Invalid 'since' format. Please provide a valid date-time string
-           or a Unix timestamp.")
+      stop(paste("Invalid 'since' format. Please provide",
+                 "a valid date-time string or a Unix timestamp."))
     }
   }
 

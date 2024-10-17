@@ -7,14 +7,18 @@
 getStatus(data = "both")
 }
 \arguments{
-\item{data}{A character string specifying the type of data to return. Use "status" for the system status, "timestamp" for the timestamp,
-or "both" to retrieve both status and timestamp. The default is "both".}
+\item{data}{A character string specifying the type of data to return.
+Use "status" for the system status, "timestamp" for
+the timestamp, or "both" to retrieve both status and timestamp.
+The default is "both".}
 }
 \value{
-A character string if \code{data = "status"} or \code{data = "timestamp"}. A named vector if \code{data = "both"}.
+A character string if \code{data = "status"} or \code{data = "timestamp"}.
+A named vector if \code{data = "both"}.
 }
 \description{
-This function fetches the current system status from the Kraken API, including both the operational status and the timestamp.
+This function fetches the current system status from the Kraken API,
+including both the operational status and the timestamp.
 }
 \examples{
 getStatus("both")

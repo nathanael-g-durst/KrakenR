@@ -28,8 +28,8 @@ getTickers <- function(pairs = "All") {
 
   # Validate pairs input
   if (!is.character(pairs) || length(pairs) < 1) {
-    stop("Invalid input: 'pairs' must be
-         a character vector with at least one element.")
+    stop(paste("Invalid input: 'pairs' must be a character vector",
+               "with at least one element."))
   }
 
   # Build the base URL

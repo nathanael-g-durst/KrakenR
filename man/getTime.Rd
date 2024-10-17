@@ -7,14 +7,17 @@
 getTime(format = "unix")
 }
 \arguments{
-\item{format}{A character string specifying the time format to return. Use "unix" for UNIX timestamp or "rfc" for RFC 1123 format.
+\item{format}{A character string specifying the time format to return.
+Use "unix" for UNIX timestamp or "rfc" for RFC 1123 format.
 The default is "unix".}
 }
 \value{
-A POSIXct object if \code{format = "unix"} or a character string in RFC 1123 format if \code{format = "rfc"}.
+A POSIXct object if \code{format = "unix"} or
+a character string in RFC 1123 format if \code{format = "rfc"}.
 }
 \description{
-This function fetches the current server time from the Kraken API in either UNIX timestamp or RFC 1123 format.
+This function fetches the current server time from the Kraken API in
+either UNIX timestamp or RFC 1123 format.
 }
 \examples{
 getTime("unix")

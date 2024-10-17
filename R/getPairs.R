@@ -33,8 +33,8 @@ getPairs <- function(pairs = "All", info = "info", country_code = NULL) {
 
   # Validate pairs input
   if (!is.character(pairs) || length(pairs) < 1) {
-    stop("Invalid input: 'pairs' must be a character vector
-         with at least one element.")
+    stop(paste("Invalid input: 'pairs' must be a character vector",
+         "with at least one element."))
   }
 
   # Validate info parameter
@@ -47,8 +47,8 @@ getPairs <- function(pairs = "All", info = "info", country_code = NULL) {
   # Validate country_code parameter
   if (!is.null(country_code)) {
     if (!is.character(country_code) || length(country_code) != 1) {
-      stop("Invalid input: 'country_code' must be a single character string
-           or NULL.")
+      stop(paste("Invalid input: 'country_code' must be a",
+                 "single character string or NULL."))
     }
   }
 

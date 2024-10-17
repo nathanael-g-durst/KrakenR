@@ -7,14 +7,19 @@
 getTickers(pairs = "All")
 }
 \arguments{
-\item{pairs}{A character vector specifying the pairs to retrieve ticker information for. Use "All" to fetch data for all pairs.
-For specific pairs, provide their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".}
+\item{pairs}{A character vector specifying the pairs to retrieve ticker
+information for. Use "All" to fetch data for all pairs.
+For specific pairs, provide their abbreviations
+(e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".}
 }
 \value{
-A data frame containing detailed ticker information for the requested pairs with renamed and split columns, where applicable, and all numbers treated as numeric.
+A data frame containing detailed ticker information for the
+requested pairs with renamed and split columns, where applicable,
+and all numbers treated as numeric.
 }
 \description{
-This function fetches detailed ticker information from the Kraken API for specified trading pairs or all available pairs.
+This function fetches detailed ticker information from the Kraken API
+for specified trading pairs or all available pairs.
 }
 \examples{
 getTickers()

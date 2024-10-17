@@ -33,8 +33,8 @@ test_that("getOHLC handles user-friendly intervals like '1h' and '1d'", {
 
 ## Test for Invalid Pair Input
 test_that("getOHLC throws error for invalid pair input", {
-  expect_error(getOHLC(123), "Invalid input: 'pair' must be
-               a single character string.")
+  expect_error(getOHLC(123),
+               "Invalid input: 'pair' must be a single character string.")
 })
 
 ## Test for Invalid Interval Input

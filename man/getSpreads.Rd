@@ -7,17 +7,24 @@
 getSpreads(pair, since = NULL, timestamp = FALSE)
 }
 \arguments{
-\item{pair}{A character string specifying the trading pair (e.g., "XTZUSD", "ADAEUR"). This is a required parameter.}
+\item{pair}{A character string specifying the trading pair (e.g., "XTZUSD",
+"ADAEUR"). This is a required parameter.}
 
-\item{since}{A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL.}
+\item{since}{A character string for a human-readable date-time
+(e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+Default is NULL.}
 
-\item{timestamp}{A logical value. If TRUE, the function returns both the spreads data frame and the last timestamp for future polling. If FALSE (default), it returns only the data frame.}
+\item{timestamp}{A logical value. If TRUE, the function returns both the
+spreads data frame and the last timestamp for future
+polling. If FALSE (default), it returns only the data frame.}
 }
 \value{
-A data frame containing the spread data or a list containing the data frame and the last timestamp.
+A data frame containing the spread data or a list containing
+the data frame and the last timestamp.
 }
 \description{
-This function fetches recent spread data from the Kraken API for a specified trading pair.
+This function fetches recent spread data from the Kraken API for
+a specified trading pair.
 }
 \examples{
 getSpreads("XTZUSD")

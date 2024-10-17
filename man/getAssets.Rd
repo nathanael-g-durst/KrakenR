@@ -7,14 +7,18 @@
 getAssets(assets = "All")
 }
 \arguments{
-\item{assets}{A character vector specifying the assets to retrieve. Use "All" to fetch data for all assets.
-For specific assets, provide their abbreviations (e.g., "ADA" or c("BTC", "ETH")). Default is "All".}
+\item{assets}{A character vector specifying the assets to retrieve.
+Use "All" to fetch data for all assets.
+For specific assets, provide their abbreviations
+(e.g., "ADA" or c("BTC", "ETH")). Default is "All".}
 }
 \value{
-A data frame containing detailed information about the requested assets.
+A data frame containing detailed information
+about the requested assets.
 }
 \description{
-This function fetches detailed asset information from the Kraken API, either for all available assets or a specified subset.
+This function fetches detailed asset information from the Kraken API,
+either for all available assets or a specified subset.
 }
 \examples{
 getAssets()

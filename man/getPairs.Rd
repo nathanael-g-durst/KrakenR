@@ -7,18 +7,25 @@
 getPairs(pairs = "All", info = "info", country_code = NULL)
 }
 \arguments{
-\item{pairs}{A character vector specifying the pairs to retrieve. Use "All" to fetch data for all pairs.
-For specific pairs, provide their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")). Default is "All".}
+\item{pairs}{A character vector specifying the pairs to retrieve. Use "All"
+to fetch data for all pairs. For specific pairs, provide
+their abbreviations (e.g., "ADAEUR" or c("ADAEUR", "BTCUSD")).
+Default is "All".}
 
-\item{info}{A character vector to specify the level of detail ("info", "leverage", "fees", "margin"). Default is "info".}
+\item{info}{A character vector to specify the level of detail
+("info", "leverage", "fees", "margin"). Default is "info".}
 
-\item{country_code}{A single character string specifying the country code to filter the pairs. Use NULL if not needed. Default is NULL.}
+\item{country_code}{A single character string specifying the country code to
+filter the pairs. Use NULL if not needed.
+Default is NULL.}
 }
 \value{
-A data frame containing detailed information about the requested asset pairs with nested lists for columns with multiple values.
+A data frame containing detailed information about the requested
+asset pairs with nested lists for columns with multiple values.
 }
 \description{
-This function fetches detailed information about tradable asset pairs from the Kraken API, either for all pairs or a specified subset.
+This function fetches detailed information about tradable asset pairs from
+the Kraken API, either for all pairs or a specified subset.
 }
 \examples{
 getPairs()

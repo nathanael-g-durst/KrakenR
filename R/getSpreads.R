@@ -36,8 +36,8 @@ getSpreads <- function(pair, since = NULL, timestamp = FALSE) {
   if (!is.null(since) && !is.numeric(since)) {
     since <- as.numeric(anytime::anytime(since))
     if (is.na(since)) {
-      stop("Invalid 'since' format. Please provide a valid date-time string
-           or a Unix timestamp.")
+      stop(paste("Invalid 'since' format. Please provide",
+                 "a valid date-time string or a Unix timestamp."))
     }
   }
 

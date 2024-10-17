@@ -33,14 +33,14 @@ test_that("getOB returns sorted bids and asks", {
 
 ## Test for Invalid Pair Input
 test_that("getOB throws error for invalid pair input", {
-  expect_error(getOB(123), "Invalid input: 'pair' must be
-               a single character string.")
+  expect_error(getOB(123),
+               "Invalid input: 'pair' must be a single character string.")
 })
 
 ## Test for Invalid Count Parameter
 test_that("getOB throws error for invalid count parameter", {
-  expect_error(getOB("ADAEUR", count = 600), "Invalid input: 'count'
-               must be a number between 1 and 500.")
+  expect_error(getOB("ADAEUR", count = 600),
+               "Invalid input: 'count' must be a number between 1 and 500.")
 })
 
 ## Test for API Error Handling

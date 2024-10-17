@@ -7,17 +7,24 @@
 getTrades(pair, since = NULL, count = NULL)
 }
 \arguments{
-\item{pair}{A character string specifying the trading pair (e.g., "XTZUSD", "ADAEUR"). This is a required parameter.}
+\item{pair}{A character string specifying the trading pair
+(e.g., "XTZUSD", "ADAEUR"). This is a required parameter.}
 
-\item{since}{A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL (returns all available trades).}
+\item{since}{A character string for a human-readable date-time
+(e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+Default is NULL (returns all available trades).}
 
-\item{count}{An optional integer between 1 and 1000 specifying the number of trades to retrieve. Default is NULL (returns up to 1000 trades).}
+\item{count}{An optional integer between 1 and 1000 specifying the number
+of trades to retrieve.
+Default is NULL (returns up to 1000 trades).}
 }
 \value{
-A data frame containing the recent trade data for the requested trading pair.
+A data frame containing the recent trade data
+for the requested trading pair.
 }
 \description{
-This function fetches recent trade data from the Kraken API for a specified trading pair.
+This function fetches recent trade data from the Kraken API
+for a specified trading pair.
 }
 \examples{
 getTrades("XTZUSD")

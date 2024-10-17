@@ -57,15 +57,15 @@ test_that("getSpreads handles large datasets", {
 
 ## Test for Pair Input Length
 test_that("getSpreads throws error for multiple pairs in input", {
-  expect_error(getSpreads(c("XTZUSD", "ADAEUR")), "Invalid input: 'pair'
-               must be a single character string.")
+  expect_error(getSpreads(c("XTZUSD", "ADAEUR")),
+               "Invalid input: 'pair' must be a single character string.")
 })
 
 
 ## Test for Invalid Input Handling (Non-Character Pair)
 test_that("getSpreads throws error for non-character pair input", {
-  expect_error(getSpreads(123), "Invalid input: 'pair' must be
-               a single character string.")
+  expect_error(getSpreads(123),
+               "Invalid input: 'pair' must be a single character string.")
 })
 
 ## Test for Invalid Input Handling (Invalid Timestamp Format)

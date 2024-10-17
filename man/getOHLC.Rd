@@ -7,19 +7,25 @@
 getOHLC(pair, interval = 1, since = NULL)
 }
 \arguments{
-\item{pair}{A character string specifying the trading pair (e.g., "ADAEUR"). This is a required parameter.}
+\item{pair}{A character string specifying the trading pair (e.g., "ADAEUR").
+This is a required parameter.}
 
-\item{interval}{A time frame interval in minutes or in a user-friendly format (e.g., "1h" for 1 hour, "1d" for 1 day, etc.).
-Possible values are "1m", "5m", "15m", "30m", "1h", "4h", "1d", "1w", "2w", or numeric values in minutes.
-Default is 1 minute.}
+\item{interval}{A time frame interval in minutes or in a
+user-friendly format (e.g., "1h" for 1 hour,
+"1d" for 1 day, etc.). Possible values are "1m", "5m",
+"15m", "30m", "1h", "4h", "1d", "1w", "2w",
+or numeric values in minutes. Default is 1 minute.}
 
-\item{since}{A character string for a human-readable date-time (e.g., "2024-10-01 12:00:00") or a Unix timestamp. Default is NULL (returns all available data).}
+\item{since}{A character string for a human-readable date-time
+(e.g., "2024-10-01 12:00:00") or a Unix timestamp.
+Default is NULL (returns all available data).}
 }
 \value{
 A data frame containing OHLC data for the requested trading pair.
 }
 \description{
-This function fetches OHLC (Open, High, Low, Close) data from the Kraken API for a specified trading pair.
+This function fetches OHLC (Open, High, Low, Close) data from the Kraken API
+for a specified trading pair.
 }
 \examples{
 getOHLC("ADAEUR")

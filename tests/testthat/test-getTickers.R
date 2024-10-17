@@ -53,8 +53,8 @@ test_that("getTickers handles large datasets efficiently", {
 ## Test for Invalid Pair Input
 test_that("getTickers throws error for invalid pair input", {
   expect_error(getTickers(123),
-               "Invalid input: 'pairs' must be a character vector
-               with at least one element.")
+               paste("Invalid input: 'pairs' must be a character vector",
+                     "with at least one element."))
 })
 
 ## Test for API Error Handling

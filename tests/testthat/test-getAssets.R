@@ -28,8 +28,8 @@ test_that("getAssets returns data frame with correct columns", {
 ## Test for Invalid Asset Input
 test_that("getAssets throws error for invalid asset input", {
   expect_error(getAssets(123),
-               "Invalid input: 'assets' must be a character
-               vector with at least one element.")
+               paste("Invalid input: 'assets' must be a character vector",
+                     "with at least one element."))
 })
 
 ## Test for API Error Handling
@@ -40,6 +40,7 @@ test_that("getAssets handles API errors correctly", {
 
 ## Test for Empty Asset Vector
 test_that("getAssets throws error for empty asset vector", {
-  expect_error(getAssets(c()), "Invalid input: 'assets' must be a
-               character vector with at least one element.")
+  expect_error(getAssets(c()),
+               paste("Invalid input: 'assets' must be a character vector with",
+                                    "at least one element."))
 })

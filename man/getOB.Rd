@@ -7,15 +7,21 @@
 getOB(pair, count = NULL)
 }
 \arguments{
-\item{pair}{A character string specifying the trading pair (e.g., "ADAEUR"). This is a required parameter.}
+\item{pair}{A character string specifying the trading pair (e.g., "ADAEUR").
+This is a required parameter.}
 
-\item{count}{An optional integer between 1 and 500 specifying the number of orders to retrieve. Default is NULL.}
+\item{count}{An optional integer between 1 and 500 specifying the number
+of orders to retrieve. Default is NULL.}
 }
 \value{
-A data frame containing the order book data for the requested trading pair, with bid orders appearing first (sorted by price ascending) followed by ask orders (sorted by price ascending).
+A data frame containing the order book data for
+the requested trading pair,
+with bid orders appearing first (sorted by price ascending)
+followed by ask orders (sorted by price ascending).
 }
 \description{
-This function fetches order book data from the Kraken API for a specified trading pair.
+This function fetches order book data from the Kraken API
+for a specified trading pair.
 }
 \examples{
 getOB("ADAEUR")

@@ -30,8 +30,9 @@ test_that("getPairs handles country_code parameter correctly", {
 
 ## Test for Invalid Pair Input
 test_that("getPairs throws error for invalid pair input", {
-  expect_error(getPairs(123), "Invalid input: 'pairs' must be
-               a character vector with at least one element.")
+  expect_error(getPairs(123),
+               paste("Invalid input: 'pairs' must be a character vector",
+                                    "with at least one element."))
 })
 
 ## Test for Invalid Info Parameter
@@ -42,8 +43,9 @@ test_that("getPairs throws error for invalid info parameter", {
 
 ## Test for Invalid Country Code
 test_that("getPairs throws error for invalid country code input", {
-  expect_error(getPairs("ADAEUR", country_code = 123), "Invalid input:
-               'country_code' must be a single character string or NULL.")
+  expect_error(getPairs("ADAEUR", country_code = 123),
+               paste("Invalid input: 'country_code' must be a",
+                     "single character string or NULL."))
 })
 
 ## Test for API Error Handling

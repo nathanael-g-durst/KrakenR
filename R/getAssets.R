@@ -29,8 +29,8 @@ getAssets <- function(assets = "All") {
 
   # Check assets parameter
   if (!is.character(assets) || length(assets) < 1) {
-    stop("Invalid input: 'assets' must be a character
-         vector with at least one element.")
+    stop(paste("Invalid input: 'assets' must be a character vector",
+               "with at least one element."))
   }
 
   # Determine if fetching all assets or specific ones
