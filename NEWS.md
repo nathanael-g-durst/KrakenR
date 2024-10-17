@@ -1,3 +1,3 @@
-# KrakenR (development version)
+# KrakenR 1.0.0
 
 * Initial CRAN submission.

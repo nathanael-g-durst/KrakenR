@@ -1,6 +1,6 @@
 Package: KrakenR
 Title: Comprehensive R Interface for Accessing Kraken Cryptocurrency Exchange REST API
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(
       person("Nathanaël", "Dürst", , "nathanael.durst@unil.ch", role = c("aut", "cre"))
