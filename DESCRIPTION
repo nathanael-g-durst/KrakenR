@@ -5,8 +5,8 @@ Authors@R:
     c(
       person("Nathanaël", "Dürst", , "nathanael.durst@unil.ch", role = c("aut", "cre"))
     )
-Description: KrakenR provides a comprehensive R interface to access data from the Kraken cryptocurrency exchange REST API.
-  It allows users to retrieve various market data, such as asset information, system status, trading pairs, and price data.
+Description: This package provides a comprehensive R interface to access data from the Kraken cryptocurrency exchange REST API.
+  It allows users to retrieve various market data, such as asset information, trading pairs, and price data.
   The package is designed to facilitate efficient data access for analysis, strategy development, and monitoring of cryptocurrency market trends.
 URL: https://github.com/nathanael-g-durst/KrakenR
 BugReports: https://github.com/nathanael-g-durst/KrakenR/issues
