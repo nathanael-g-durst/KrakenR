@@ -1,3 +1,9 @@
+<p align="right">
+  <a href="https://CRAN.R-project.org/package=KrakenR">
+    <img src="https://cranlogs.r-pkg.org/badges/grand-total/KrakenR" alt="CRAN total downloads">
+  </a>
+</p>
+
 ## Introduction
 
 The KrakenR package provides a user-friendly interface to the Kraken cryptocurrency exchange's REST API. It allows R users to access real-time and historical market data, asset information, and exchange metrics, making it a valuable tool for financial analysts, traders, and researchers interested in the cryptocurrency markets.
